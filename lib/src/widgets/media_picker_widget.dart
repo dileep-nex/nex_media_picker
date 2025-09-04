@@ -282,6 +282,8 @@ class _MediaPickerWidgetState extends State<MediaPickerWidget> {
     try {
      List<MediaFile> mediaFile = await VideoService.pickMultipleVideos(
         compressionSettings: widget.videoCompressionSettings,
+        compressed: (total, count){
+        }
       );
 
       if (mediaFile != null) {

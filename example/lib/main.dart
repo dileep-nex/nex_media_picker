@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:nex_media_picker/nex_media_picker.dart' as video_compress;
 import 'package:provider/provider.dart';
 import 'package:nex_media_picker/nex_media_picker.dart';
 
@@ -16,7 +17,8 @@ class MyApp extends StatelessWidget {
       child: Consumer<MediaPickerThemeProvider>(
         builder: (context, themeProvider, child) {
           return MaterialApp(
-            title: 'Nex Media Picker Demo',
+            title: 'Nex Media Picker',
+            debugShowCheckedModeBanner: false,
             theme: themeProvider.lightTheme,
             darkTheme: themeProvider.darkTheme,
             themeMode: themeProvider.theme.themeMode,
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MediaPickerDemo extends StatefulWidget {
-  const MediaPickerDemo({Key? key}) : super(key: key);
+  const MediaPickerDemo({super.key});
 
   @override
   State<MediaPickerDemo> createState() => _MediaPickerDemoState();
@@ -37,6 +39,12 @@ class MediaPickerDemo extends StatefulWidget {
 
 class _MediaPickerDemoState extends State<MediaPickerDemo> {
   List<MediaFile> selectedMedia = [];
+  //
+  // final video_compress.Subscription? _progressSubscription = video_compress.VideoCompress.compressProgress$.subscribe((progress) {
+  // print('Compression progress: ${(progress ).toStringAsFixed(1)}%');
+  // // Update your UI here
+  // // progress is a double between 0.0 and 1.0
+  // });
 
   @override
   Widget build(BuildContext context) {

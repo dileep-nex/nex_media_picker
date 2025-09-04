@@ -61,11 +61,8 @@ class VideoService {
     VideoCompressionSettings? compressionSettings,
     bool showProgressDialog = false,
     BuildContext? context,
+    Function(int,int)? compressed
   }) async {
-
-    print("multi video selection:");
-    print("multi video selection: compress: ${compressionSettings}");
-
 
     try {
       final List<XFile> pickedFiles = await _picker.pickMultiVideo(
@@ -95,6 +92,7 @@ class VideoService {
         if (showProgressDialog && context != null) {
           Navigator.of(context, rootNavigator: true).pop();
         }
+        compressed!(pickedFiles.length,i+1);
       }
       return mediaFiles;
     } catch (e) {
@@ -249,29 +247,5 @@ class VideoService {
       },
     );
   }
-
-  // Utility method to show continue dialog
-  // static Future<bool> _showContinueDialog(BuildContext context, String message) async {
-  //   return await showDialog<bool>(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: const Text('Add More Videos'),
-  //         content: Text(message),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () => Navigator.of(context).pop(false),
-  //             child: const Text('Done'),
-  //           ),
-  //           TextButton(
-  //             onPressed: () => Navigator.of(context).pop(true),
-  //             child: const Text('Add More'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   ) ?? false;
-  // }
-
 
 }
