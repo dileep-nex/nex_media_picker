@@ -62,6 +62,11 @@ class VideoService {
     bool showProgressDialog = false,
     BuildContext? context,
   }) async {
+
+    print("multi video selection:");
+    print("multi video selection: compress: ${compressionSettings}");
+
+
     try {
       final List<XFile> pickedFiles = await _picker.pickMultiVideo(
       );
@@ -74,7 +79,7 @@ class VideoService {
       final List<MediaFile> mediaFiles = [];
       for (int i = 0; i < pickedFiles.length; i++) {
         final xFile = pickedFiles[i];
-
+        print("multi video Processing:");
         if (showProgressDialog && context != null) {
           _showProgressDialog(context, 'Processing video ${i + 1} of ${pickedFiles.length}');
         }
@@ -201,7 +206,7 @@ class VideoService {
     try {
       final info = await video_compress.VideoCompress.compressVideo(
         videoFile.path,
-        quality: settings.quality as video_compress.VideoQuality,
+        quality: settings.quality,
         deleteOrigin: settings.deleteOrigin,
         startTime: settings.startTime,
         duration: settings.duration,

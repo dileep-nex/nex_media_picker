@@ -7,7 +7,7 @@ class DocumentService {
   static Future<MediaFile?> pickDocument({
     List<String>? allowedExtensions,
     bool allowMultiple = false,
-    FileType type = FileType.any,
+    FileType type = FileType.custom,
   }) async {
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -53,6 +53,7 @@ class DocumentService {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: type,
         allowMultiple: true,
+        allowedExtensions: allowedExtensions
       );
 
       if (result != null && result.files.isNotEmpty) {

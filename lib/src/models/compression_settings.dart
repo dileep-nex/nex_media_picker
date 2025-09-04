@@ -22,14 +22,14 @@ class ImageCompressionSettings {
 }
 
 class VideoCompressionSettings {
-  final VideoQualityNex quality;
+  final VideoQuality quality;
   final bool deleteOrigin;
   final int? startTime;
   final int? duration;
   final bool includeAudio;
 
   const VideoCompressionSettings({
-    this.quality = VideoQualityNex.DefaultQuality,
+    this.quality = VideoQuality.DefaultQuality,
     this.deleteOrigin = false,
     this.startTime,
     this.duration,
@@ -43,15 +43,4 @@ class VideoCompressionSettings {
 }
 
 enum CompressFormat { jpeg, png, heic, webp }
-
-enum VideoQualityNex {
-  DefaultQuality,
-  LowQuality,
-  MediumQuality,
-  HighestQuality,
-  Res640x480Quality,
-  Res960x540Quality,
-  Res1280x720Quality,
-  Res1920x1080Quality
-}
 

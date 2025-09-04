@@ -1,3 +1,5 @@
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +21,7 @@ class MediaPickerWidget extends StatefulWidget {
   final Widget? customButton;
 
   const MediaPickerWidget({
-    Key? key,
+    super.key,
     this.onMediaSelected,
     this.onMultipleMediaSelected,
     this.allowMultiple = false,
@@ -28,7 +30,7 @@ class MediaPickerWidget extends StatefulWidget {
     this.videoCompressionSettings,
     this.allowedDocumentExtensions,
     this.customButton,
-  }) : super(key: key);
+  });
 
   @override
   State<MediaPickerWidget> createState() => _MediaPickerWidgetState();
@@ -116,6 +118,7 @@ class _MediaPickerWidgetState extends State<MediaPickerWidget> {
 
     if (widget.allowedTypes.contains(MediaType.image)) {
       options.addAll([
+        if(!widget.allowMultiple)
         _buildPickerOption(
           icon: Icons.camera_alt,
           title: 'Camera',
@@ -277,17 +280,17 @@ class _MediaPickerWidgetState extends State<MediaPickerWidget> {
     setState(() => _isLoading = true);
 
     try {
-      print("multi video picker here:");
      List<MediaFile> mediaFile = await VideoService.pickMultipleVideos(
         compressionSettings: widget.videoCompressionSettings,
       );
 
-      print("multi video picker here: $mediaFile");
       if (mediaFile != null) {
         widget.onMultipleMediaSelected?.call(mediaFile);
       }
     }catch(e){
-      print("here is error: $e");
+      if (kDebugMode) {
+        print("here is error: $e");
+      }
 
     }
 
@@ -302,6 +305,7 @@ class _MediaPickerWidgetState extends State<MediaPickerWidget> {
     try {
       final mediaFile = await DocumentService.pickDocument(
         allowedExtensions: widget.allowedDocumentExtensions,
+        type: FileType.custom
       );
 
       if (mediaFile != null) {
@@ -314,18 +318,18 @@ class _MediaPickerWidgetState extends State<MediaPickerWidget> {
 
   Future<void> _pickMultipleDocuments() async {
     setState(() => _isLoading = true);
-    print("here are media files1:");
     try {
       final mediaFiles = await DocumentService.pickMultipleDocuments(
         allowedExtensions:  widget.allowedDocumentExtensions,
       );
 
       if (mediaFiles.isNotEmpty) {
-        print("here are media files: ${mediaFiles}");
         widget.onMultipleMediaSelected?.call(mediaFiles);
       }
     } catch(e){
-      print("here are media files3: ${e}");
+      if (kDebugMode) {
+        print("here are media files3: $e");
+      }
     }
 
     finally {
@@ -340,11 +344,11 @@ class MediaPreviewWidget extends StatelessWidget {
   final double size;
 
   const MediaPreviewWidget({
-    Key? key,
+    super.key,
     required this.mediaFile,
     this.onRemove,
     this.size = 100,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -482,12 +486,12 @@ class MediaGridWidget extends StatelessWidget {
   final int crossAxisCount;
 
   const MediaGridWidget({
-    Key? key,
+    super.key,
     required this.mediaFiles,
     this.onRemove,
     this.itemSize = 100,
     this.crossAxisCount = 3,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

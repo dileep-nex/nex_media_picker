@@ -24,15 +24,15 @@ class ImageService {
 
       if (enableCropping) {
         final croppedFile = await _cropImage(imageFile, isDarkMode);
-        print("Here is croppedFile _cropImage: ${croppedFile}");
         if (croppedFile != null) {
           imageFile = File(croppedFile.path);
+        } else{
+          return null;
         }
       }
 
       if (compressionSettings != null) {
         final compressedFile = await _compressImage(imageFile, compressionSettings);
-        print("Here is croppedFile _compressImage: ${compressedFile}");
         if (compressedFile != null) {
           imageFile = compressedFile;
         }

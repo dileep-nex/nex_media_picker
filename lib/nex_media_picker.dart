@@ -13,3 +13,4 @@ export 'src/services/document_service.dart';
 // Widgets
 export 'src/widgets/media_picker_widget.dart';
 export 'src/widgets/theme_provider.dart';
+export 'package:video_compress/video_compress.dart';

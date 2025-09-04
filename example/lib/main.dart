@@ -63,14 +63,15 @@ class _MediaPickerDemoState extends State<MediaPickerDemo> {
             ),
             const SizedBox(height: 16),
             MediaPickerWidget(
-              allowedTypes: const [MediaType.image, MediaType.video, MediaType.document],
+              allowedTypes: const [MediaType.image, MediaType.video, MediaType.document,],
+              allowedDocumentExtensions: const ['pdf', 'doc', 'docx', 'txt'],
               imageCompressionSettings: const ImageCompressionSettings(
                 quality: 80,
                 maxWidth: 1920,
                 maxHeight: 1080,
               ),
               videoCompressionSettings:  VideoCompressionSettings(
-                quality: VideoQualityNex.LowQuality,
+                quality: VideoQuality.LowQuality,
                 includeAudio: true,
               ),
               onMediaSelected: (mediaFile) {
@@ -92,6 +93,15 @@ class _MediaPickerDemoState extends State<MediaPickerDemo> {
               allowMultiple: true,
               allowedTypes: const [MediaType.image, MediaType.document, MediaType.video],
               allowedDocumentExtensions: const ['pdf', 'doc', 'docx', 'txt'],
+              imageCompressionSettings: const ImageCompressionSettings(
+                quality: 80,
+                maxWidth: 1920,
+                maxHeight: 1080,
+              ),
+              videoCompressionSettings: VideoCompressionSettings(
+                quality: VideoQuality.LowQuality,
+                includeAudio: true,
+              ),
               onMultipleMediaSelected: (mediaFiles) {
                 setState(() {
                   selectedMedia.addAll(mediaFiles);
