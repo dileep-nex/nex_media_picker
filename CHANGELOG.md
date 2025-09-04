@@ -1,5 +1,5 @@
 
-## [1.0.0] - 2024-01-XX
+## 0.0.1
 
 ### Added
 - Initial release of Nex Media Picker
@@ -25,6 +25,3 @@
 - 📱 Multiple selection support
 - 🔧 Highly configurable options
 
-### Platform Support
-- ✅ Android
-- ✅ iOS
