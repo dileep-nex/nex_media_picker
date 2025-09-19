@@ -25,3 +25,5 @@
 - 📱 Multiple selection support
 - 🔧 Highly configurable options
 
+## 0.0.2
+* Packages updated

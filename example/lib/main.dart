@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:nex_media_picker/nex_media_picker.dart' as video_compress;
 import 'package:provider/provider.dart';
 import 'package:nex_media_picker/nex_media_picker.dart';
 
